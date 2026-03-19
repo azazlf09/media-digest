@@ -1,0 +1,32 @@
+# Data and temp files
+data/cookies/*
+!data/cookies/**/.gitkeep
+data/processed.json
+data/temp/
+data/summaries/
+data/report.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.venv/
+venv/
