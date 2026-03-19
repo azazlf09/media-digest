@@ -24,6 +24,7 @@ for d in [DATA_DIR, OUTPUT_DIR, TEMP_DIR, COOKIES_DIR]:
 
 def load_json(path, default=None):
     """Load JSON file, return default if missing."""
+    path = Path(path)
     if path.exists():
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)

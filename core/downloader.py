@@ -140,13 +140,8 @@ def download(url, output_dir=None, cookies_file=None, audio_format="mp3", qualit
         "--no-playlist",  # Only download single video
     ]
 
-    # Prefer subtitles over whisper (YouTube auto-subs)
-    if platform == "youtube":
-        base_args.extend([
-            "--write-auto-sub", "--sub-lang", "en,zh,ja,ko,-live_chat",
-            "--convert-subs", "srt",
-            "--skip-download",
-        ])
+    # Note: YouTube subtitle extraction is handled separately by extract_subtitles()
+    # in transcriber.py. The download function always downloads audio.
 
     # === Attempt 1: Direct download (no cookies) ===
     rc, stdout, stderr = _run_yt_dlp(base_args + [url])
