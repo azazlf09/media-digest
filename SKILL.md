@@ -129,7 +129,11 @@ Each processed video produces `data/summaries/<platform>_<video_id>.json`:
 - **No Whisper installed**: Still downloads and returns metadata + subtitles (if available)
 - **No cookies**: Returns actionable error with setup instructions
 - **No ffmpeg**: Returns error with install command
-- **Rate limits**: Processes oldest-first, respects platform limits
+- **Rate limits**: Processes videos respecting platform limits
+
+## Behavior Rules
+
+- If the user does not specify a crawl/processing order, process videos from **newest to oldest**.
 
 ## Data Storage
 
