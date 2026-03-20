@@ -21,7 +21,11 @@
 
 ## What is MediaDigest?
 
-MediaDigest downloads audio from YouTube, Bilibili, and X/Twitter videos, transcribes it locally using Whisper (zero API cost), and outputs structured summaries. It also supports channel monitoring — automatically check YouTube and Bilibili channels for new content.
+MediaDigest is a **standalone Python CLI tool** that downloads audio from YouTube, Bilibili, and X/Twitter videos, transcribes it locally using Whisper (zero API cost), and outputs structured summaries. It also supports channel monitoring — automatically check YouTube and Bilibili channels for new content.
+
+**MediaDigest works on its own — no AI platform or cloud service required.** Just install the dependencies and run.
+
+It also includes an **OpenClaw Skill integration** (`SKILL.md`): if you're an [OpenClaw](https://openclaw.ai) user, drop it into your `skills/` folder and the AI agent can call it automatically — you just send a video link and get a summary back.
 
 ### Features
 

@@ -12,9 +12,11 @@
 
 ## 这是什么？
 
-MediaDigest 可以从 YouTube、B站、X/Twitter 下载视频音频，用 Whisper 在本地转写为文字（不花钱！），然后生成结构化摘要。
+MediaDigest 是一个**独立的 Python 命令行工具**，可以从 YouTube、B站、X/Twitter 下载视频音频，用 Whisper 在本地转写为文字（不花钱！），然后生成结构化摘要。还支持频道监控——自动检查 YouTube 和 B站的频道是否有新内容。
 
-还支持频道监控——自动检查 YouTube 和 B站的频道是否有新内容。
+**MediaDigest 完全独立运行——不需要 AI 平台，不需要云服务。** 装好依赖就能用。
+
+它还附带 **OpenClaw Skill 集成**（`SKILL.md`）：如果你是 [OpenClaw](https://openclaw.ai) 用户，把它放到 `skills/` 目录下，AI 会自动调用——你只需要发送视频链接，就能拿到摘要。
 
 ### 核心特性
 
