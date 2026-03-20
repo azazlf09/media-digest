@@ -21,7 +21,7 @@
 
 ## What is MediaDigest?
 
-MediaDigest is a **standalone Python CLI tool** that downloads audio from YouTube, Bilibili, and X/Twitter videos, transcribes it locally using Whisper (zero API cost), and outputs structured summaries. It also supports channel monitoring — automatically check YouTube and Bilibili channels for new content.
+MediaDigest is a **standalone Python CLI tool** that downloads audio from videos across **1800+ websites** (powered by [yt-dlp](https://github.com/yt-dlp/yt-dlp)), transcribes it locally using Whisper (zero API cost), and outputs structured summaries. It also supports channel monitoring — automatically check for new content.
 
 **MediaDigest works on its own — no AI platform or cloud service required.** Just install the dependencies and run.
 
@@ -29,7 +29,7 @@ It also includes an **OpenClaw Skill integration** (`SKILL.md`): if you're an [O
 
 ### Features
 
-- **Multi-platform** — YouTube, Bilibili, X/Twitter in one tool
+- **Multi-platform** — Powered by yt-dlp (1800+ sites). Verified on YouTube, Bilibili, X/Twitter
 - **Zero API cost** — Local Whisper transcription, no cloud services needed
 - **Smart subtitle extraction** — Prefers YouTube auto-subs over Whisper when available
 - **Cookie auto-retry** — Automatically detects auth errors and retries with browser cookies
@@ -266,13 +266,16 @@ Each processed video produces a JSON file:
 
 ---
 
-## Supported Platforms
+## Verified Platforms
 
 | Platform | URL Formats | Auth | Subtitles | Channel Monitor |
 |----------|------------|------|-----------|-----------------|
-| **YouTube** | youtube.com, youtu.be | Rare | Auto-subs + Whisper | Yes |
-| **Bilibili** | bilibili.com, b23.tv | Rare | Whisper | Yes |
-| **X/Twitter** | x.com, twitter.com | Always | Whisper | Manual only |
+| **YouTube** | youtube.com, youtu.be | Rare | Auto-subs + Whisper | ✅ Yes |
+| **Bilibili** | bilibili.com, b23.tv | Rare | Whisper | ✅ Yes |
+| **X/Twitter** | x.com, twitter.com | Always | Whisper | ❌ Manual only |
+| **Any yt-dlp site** | 1800+ sites | Varies | Whisper | Varies |
+
+> Powered by [yt-dlp](https://github.com/yt-dlp/yt-dlp), MediaDigest supports **1800+ websites** including Instagram, TikTok, Reddit, Vimeo, Facebook, Dailymotion, Twitch, SoundCloud, and many more. The download + transcription pipeline works with all of them. Cookie auto-retry and channel monitoring depend on each platform's API support.
 
 ---
 

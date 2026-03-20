@@ -12,7 +12,7 @@
 
 ## 这是什么？
 
-MediaDigest 是一个**独立的 Python 命令行工具**，可以从 YouTube、B站、X/Twitter 下载视频音频，用 Whisper 在本地转写为文字（不花钱！），然后生成结构化摘要。还支持频道监控——自动检查 YouTube 和 B站的频道是否有新内容。
+MediaDigest 是一个**独立的 Python 命令行工具**，可以从**1800+ 个网站**（基于 [yt-dlp](https://github.com/yt-dlp/yt-dlp)）下载视频音频，用 Whisper 在本地转写为文字（不花钱！），然后生成结构化摘要。还支持频道监控——自动检查频道是否有新内容。
 
 **MediaDigest 完全独立运行——不需要 AI 平台，不需要云服务。** 装好依赖就能用。
 
@@ -20,7 +20,7 @@ MediaDigest 是一个**独立的 Python 命令行工具**，可以从 YouTube、
 
 ### 核心特性
 
-- 🌍 **多平台** — YouTube、B站、X/Twitter 一个工具搞定
+- 🌍 **多平台** — 基于 yt-dlp 支持 1800+ 网站，已在 YouTube、B站、X/Twitter 上验证
 - 💰 **零 API 费用** — 本地 Whisper 转写，不用云服务
 - 🍪 **智能 Cookie 重试** — 自动检测登录要求，本地用户自动从浏览器读取 Cookie
 - 📺 **频道监控** — 添加 YouTube/B站频道，自动检查新视频
@@ -128,15 +128,16 @@ python3 media_digest.py migrate "/旧版本/channel-monitor路径"
 
 ---
 
-## 支持的平台
+## 已验证的平台
 
 | 平台 | 单视频处理 | 频道监控 | 备注 |
 |------|-----------|---------|------|
 | YouTube | ✅ | ✅ | 优先使用字幕，比Whisper更快更准 |
 | B站 | ✅ | ✅ | 大部分视频无需登录 |
 | X/Twitter | ✅ | ❌ | 仅支持单链接，需Cookie |
+| **其他 yt-dlp 支持的网站** | ✅ | 视平台而定 | 共 1800+ 个网站 |
 
-> X/Twitter 不支持自动监控频道，因为 X API 限制。你可以手动发送推文链接来处理。
+> 基于 [yt-dlp](https://github.com/yt-dlp/yt-dlp)，MediaDigest 支持 **1800+ 个网站**，包括 Instagram、TikTok、Reddit、Vimeo、Facebook、Dailymotion、Twitch、SoundCloud 等等。下载 + 转写管道适用于所有这些网站。Cookie 自动重试和频道监控取决于各平台的 API 支持情况。
 
 ---
 
