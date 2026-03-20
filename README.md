@@ -13,6 +13,10 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
 </p>
 
+<p align="center">
+  <a href="README_CN.md">简体中文</a> | English
+</p>
+
 ---
 
 ## What is MediaDigest?
@@ -38,7 +42,7 @@ MediaDigest downloads audio from YouTube, Bilibili, and X/Twitter videos, transc
 
 ```bash
 # 1. Clone and enter
-git clone https://github.com/yourname/media-digest.git
+git clone https://github.com/azazlf09/media-digest.git
 cd media-digest
 
 # 2. Install dependencies
@@ -55,7 +59,7 @@ python3 media_digest.py now "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 
 ```bash
 # 1. Clone
-git clone https://github.com/yourname/media-digest.git
+git clone https://github.com/azazlf09/media-digest.git
 
 # 2. Export cookies from your browser (for auth-required videos)
 #    Use browser extension: "Get cookies.txt LOCALLY"
