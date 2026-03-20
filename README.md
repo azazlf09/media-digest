@@ -36,8 +36,6 @@ It also includes an **OpenClaw Skill integration** (`SKILL.md`): if you're an [O
 - **Channel monitoring** — Add YouTube/Bilibili channels and check for new videos
 - **Graceful degradation** — Works even if some components are missing
 - **Docker ready** — Cookie file mounting and dedicated setup script
-- **V2 migration** — Seamless upgrade from channel-monitor v2.0
-
 ---
 
 ## Quick Start

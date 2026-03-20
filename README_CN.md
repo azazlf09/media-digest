@@ -25,8 +25,6 @@ MediaDigest 是一个**独立的 Python 命令行工具**，可以从 YouTube、
 - 🍪 **智能 Cookie 重试** — 自动检测登录要求，本地用户自动从浏览器读取 Cookie
 - 📺 **频道监控** — 添加 YouTube/B站频道，自动检查新视频
 - 🐳 **Docker 就绪** — 支持 Cookie 文件挂载和专用安装脚本
-- 🔄 **V2 平滑迁移** — 从 channel-monitor v2.0 无缝升级
-
 ---
 
 ## 快速开始
