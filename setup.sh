@@ -46,7 +46,7 @@ echo ""
 echo "[3/3] Checking Python packages..."
 
 MISSING=""
-for pkg in faster-whisper; do
+for pkg in faster-whisper curl_cffi; do
     mod_name=$(echo "$pkg" | tr '-' '_')
     if python3 -c "import $mod_name" 2>/dev/null; then
         echo "  $pkg: OK"

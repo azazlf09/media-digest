@@ -160,7 +160,41 @@ def download(url, output_dir=None, cookies_file=None, audio_format="mp3", qualit
     # Note: YouTube subtitle extraction is handled separately by extract_subtitles()
     # in transcriber.py. The download function always downloads audio.
 
-    # === Attempt 1: Direct download (no cookies) ===
+    # Determine impersonate target based on platform
+    # This mimics a real browser to bypass YouTube bot detection without cookies
+    impersonate_target = None
+    if platform == "youtube":
+        if sys.platform == "darwin":
+            impersonate_target = "Safari-18.4"
+        elif sys.platform == "win32":
+            impersonate_target = "Chrome-136"
+        else:
+            impersonate_target = "Chrome-136"
+
+    if impersonate_target:
+        try:
+            import curl_cffi  # noqa: F401
+        except ImportError:
+            impersonate_target = None  # curl_cffi not installed, skip impersonation
+
+    # === Attempt 1: Impersonate browser (bypass bot detection without cookies) ===
+    if impersonate_target:
+        rc, stdout, stderr = _run_yt_dlp(
+            base_args + [f"--impersonate", impersonate_target, url],
+            timeout=300  # impersonate may be slower, give more time
+        )
+        audio_path = _find_audio_file(output_dir, f"{platform}_{safe_id}", audio_format)
+        if audio_path:
+            meta = _extract_metadata(stdout, platform, video_id, url)
+            return {
+                "success": True,
+                "audio_path": audio_path,
+                "metadata": meta,
+                "method": "impersonate",
+                "error": None,
+            }
+
+    # === Attempt 2: Direct download (no cookies, no impersonation) ===
     rc, stdout, stderr = _run_yt_dlp(base_args + [url])
     audio_path = _find_audio_file(output_dir, f"{platform}_{safe_id}", audio_format)
 
