@@ -59,14 +59,31 @@ def _find_cookies_file(platform):
 
 def _find_browser_cookies(platform):
     """Detect available browsers for cookie extraction."""
-    browsers = ["chrome", "edge", "firefox", "brave", "safari", "opera"]
+    # Safari is excluded on macOS because Keychain blocks external cookie access
+    # yt-dlp --cookies-from-browser safari often fails with permission errors
+    browsers = ["chrome", "edge", "firefox", "brave", "opera"]
+    if sys.platform != "darwin":
+        browsers.append("safari")
+
     available = []
     for browser in browsers:
         if sys.platform == "darwin":
-            # macOS
+            # macOS - check both CLI name and .app bundle
             browser_path = shutil.which(browser)
             if browser_path:
                 available.append(browser)
+            else:
+                # Check /Applications for .app bundles
+                app_names = {
+                    "chrome": "Google Chrome",
+                    "firefox": "Firefox",
+                    "brave": "Brave Browser",
+                    "edge": "Microsoft Edge",
+                    "opera": "Opera",
+                }
+                app_path = Path(f"/Applications/{app_names.get(browser, browser)}.app/Contents/MacOS")
+                if app_path.exists():
+                    available.append(browser)
         elif sys.platform == "win32":
             # Windows - check registry or common paths
             if browser == "chrome":
@@ -212,9 +229,11 @@ def download(url, output_dir=None, cookies_file=None, audio_format="mp3", qualit
                 f"Authentication required for {platform} video. "
                 f"Running in Docker - place cookies file at: "
                 f"data/cookies/{platform}/cookies.txt\n"
-                f"Export cookies from your browser using a browser extension "
-                f"(e.g., 'Get cookies.txt' for Chrome/Firefox), "
-                f"then mount the file into the container."
+                f"To export cookies:\n"
+                f"  Chrome/Firefox: Install 'Get cookies.txt LOCALLY' extension, "
+                f"visit YouTube, log in, then export.\n"
+                f"  macOS Safari: Install a cookie export extension in Safari, "
+                f"export YouTube cookies to a file, then copy to the path above."
             ),
         }
     else:
@@ -246,6 +265,14 @@ def download(url, output_dir=None, cookies_file=None, audio_format="mp3", qualit
                 f"Try: (1) Open the video in your browser and log in, "
                 f"then retry; (2) Export cookies to data/cookies/{platform}/cookies.txt "
                 f"using a browser extension like 'Get cookies.txt LOCALLY'."
+                + (
+                    "\n\nmacOS Safari users: Safari cookies cannot be read by external "
+                    "programs due to Keychain restrictions. Please install Chrome or Firefox, "
+                    "or export cookies manually using a Safari cookie export extension, "
+                    "then save to data/cookies/" + platform + "/cookies.txt"
+                    if sys.platform == "darwin"
+                    else ""
+                )
             ),
         }
 
