@@ -24,15 +24,15 @@ from pathlib import Path
 BASE_DIR = Path(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, str(BASE_DIR))
 
-from core.config import OUTPUT_DIR, load_json, load_processed, load_channels
-from core.monitor import (
+from mdcore.config import OUTPUT_DIR, load_json, load_processed, load_channels
+from mdcore.monitor import (
     add_channel, remove_channel, list_channels, check_channels,
     process_video, migrate_v2_data,
 )
-from core.platform import detect_platform, platform_label
-from core.deps import check_all_print
-from core.downloader import download, download_metadata_only
-from core.transcriber import transcribe, extract_subtitles
+from mdcore.platform import detect_platform, platform_label
+from mdcore.deps import check_all_print
+from mdcore.downloader import download, download_metadata_only
+from mdcore.transcriber import transcribe, extract_subtitles
 
 
 def cmd_now(url):
@@ -96,7 +96,7 @@ def cmd_now(url):
                 __import__("datetime").timezone.utc
             ).isoformat(),
         }
-        from core.config import save_json
+        from mdcore.config import save_json
         save_json(summary_path, summary)
 
         print(f"\n--- Summary ---")
@@ -128,7 +128,7 @@ def cmd_now(url):
             "title": result.get("title", ""),
             "summary_path": result.get("summary_path", ""),
         }
-        from core.config import save_processed
+        from mdcore.config import save_processed
         save_processed(processed)
 
         if result.get("summary_path") and os.path.exists(result["summary_path"]):
@@ -241,7 +241,7 @@ def cmd_report():
         lines.append("")
 
     report = "\n".join(lines)
-    from core.config import DATA_DIR
+    from mdcore.config import DATA_DIR
     report_file = DATA_DIR / "report.txt"
     with open(report_file, "w", encoding="utf-8") as f:
         f.write(report)

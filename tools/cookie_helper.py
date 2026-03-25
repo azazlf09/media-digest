@@ -20,7 +20,7 @@ from pathlib import Path
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from core.config import COOKIES_DIR, BASE_DIR
+from mdcore.config import COOKIES_DIR, BASE_DIR
 
 
 def get_cookies_dir(platform=None):
