@@ -1,13 +1,13 @@
 ---
 name: media-digest
-version: 3.0.0
-description: "Universal video summarization pipeline for YouTube, Bilibili, and X/Twitter. Download audio, transcribe via local Whisper, output structured summary. Zero API cost. Supports single-video processing and channel monitoring."
+version: 4.0.0
+description: "Universal video summarization pipeline for YouTube, Bilibili, and X/Twitter. Download audio, transcribe via local Whisper, output structured summary. Zero API cost. Supports single-video processing and channel monitoring. Includes news fetching from Hacker News, GitHub Trending, and QbitAI."
 author: "Da Ge Studio"
 ---
 
-# MediaDigest Skill v3.0
+# MediaDigest Skill v4.0
 
-Universal video content summarization pipeline. Supports YouTube, Bilibili, and X/Twitter. Users provide a video link and get an AI-generated transcript + summary. Also supports channel monitoring for YouTube and Bilibili.
+Universal video content summarization pipeline. Supports YouTube, Bilibili, and X/Twitter. Users provide a video link and get an AI-generated transcript + summary. Also supports channel monitoring for YouTube and Bilibili. Now includes news/hot-topic fetching from Hacker News, GitHub Trending, and 量子位 (QbitAI).
 
 ## When to Use
 

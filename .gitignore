@@ -30,3 +30,5 @@ desktop.ini
 .env
 .venv/
 venv/
+news_seen.json
+summaries/news_*.json

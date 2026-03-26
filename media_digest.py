@@ -288,6 +288,10 @@ Supported platforms:
   - YouTube: youtube.com/watch?v=xxx, youtu.be/xxx
   - Bilibili: bilibili.com/video/BVxxx, b23.tv/xxx
   - X/Twitter: x.com/user/status/xxx (single link only)
+
+News:
+  python3 media_digest.py news fetch [--source hackernews|github|qbitai|all] [--count N]
+  python3 media_digest.py news sources [--add <name> <url> <type>] [--remove <name>] [--list]
 """)
 
 
@@ -329,6 +333,16 @@ if __name__ == "__main__":
             print("Error: provide v2.0 data directory path")
             sys.exit(1)
         cmd_migrate(sys.argv[2])
+    elif cmd == "news":
+        from mdcore.news import parse_news_args, cmd_fetch, cmd_sources
+        news_args = parse_news_args(sys.argv[2:])
+        if news_args.subcmd == "fetch":
+            cmd_fetch(news_args)
+        elif news_args.subcmd == "sources":
+            cmd_sources(news_args)
+        else:
+            print("Usage: news fetch | news sources")
+            sys.exit(1)
     else:
         print(f"Unknown command: {cmd}")
         print_usage()
