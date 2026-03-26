@@ -113,10 +113,11 @@ def _save_result(source_key, data):
     if not new_items:
         return None, 0, 0
 
-    # Save to today's file
-    date_str = datetime.now(timezone.utc).strftime("%Y%m%d")
-    filename = f"news_{source_key}_{date_str}.json"
-    filepath = SUMMARIES_DIR / filename
+    # Save to news/{source_key}/YYYY-MM-DD.json
+    date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    source_dir = SUMMARIES_DIR / "news" / source_key
+    source_dir.mkdir(parents=True, exist_ok=True)
+    filepath = source_dir / f"{date_str}.json"
 
     # Append to existing file for same day
     existing_items = []
